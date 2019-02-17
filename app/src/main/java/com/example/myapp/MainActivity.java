@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import  android.content.ContentProvider;
+import 	android.util.Log;
 
 import java.io.*;
 import java.io.File;
@@ -98,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
                                 "com.example.android.fileprovider",
                                 photoFile);
                         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+
+                        final String TAG = "MyActivity";
+                        Log.i(TAG, "MyClass.getView() — get item number " + photoURI);
+
                         startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
                     }
                 }
