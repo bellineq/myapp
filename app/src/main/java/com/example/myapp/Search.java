@@ -40,12 +40,17 @@ public class Search extends AppCompatActivity implements TextToSpeech.OnInitList
         wvResultText = findViewById(R.id.search_result_txt);
         handleIntent(getIntent());
 
-        txtTextToSpeech = findViewById(R.id.t2s_init);
+        txtTextToSpeech = findViewById(R.id.txt_t2s);
 
         Button btnTextToSpeech = findViewById(R.id.btn_t2s);
         btnTextToSpeech.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                readIntro(txtTextToSpeech.getText().toString(), 1);
+
+                // this is where the app speaks
+                String strIntro = txtTextToSpeech.getText().toString();
+                mT2S.setSpeechRate(0.87f);
+//                mT2S.setPitch (1.3f);
+                mT2S.speak(strIntro, TextToSpeech.QUEUE_FLUSH, null);
             }
         });
 
@@ -133,13 +138,6 @@ public class Search extends AppCompatActivity implements TextToSpeech.OnInitList
         wvResultImage.loadUrl("http:" + "//upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/300px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg");
     }
 
-    private void readIntro(String text, int qmode) {
-        if (qmode == 1)
-            mT2S.speak(text, TextToSpeech.QUEUE_ADD, null);
-        else
-            mT2S.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ACT_CHECK_TTS_DATA) {
@@ -163,8 +161,6 @@ public class Search extends AppCompatActivity implements TextToSpeech.OnInitList
                 if (result == TextToSpeech.LANG_MISSING_DATA ||
                         result == TextToSpeech.LANG_NOT_SUPPORTED) {
                     Toast.makeText(this, "TTS language is not supported", Toast.LENGTH_LONG).show();
-                } else {
-                    readIntro("", 0);
                 }
             }
         } else {
