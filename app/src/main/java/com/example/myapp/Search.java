@@ -10,26 +10,23 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.Locale;
 
-
-public class Search extends AppCompatActivity{
-//public class Search extends AppCompatActivity implements TextToSpeech.OnInitListener {
+//public class Search extends AppCompatActivity{
+public class Search extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     private WebView wvResultImage;
     private WebView wvResultTitle;
     private WebView wvResultText;
 
-//    TextToSpeech mTTS = null;
+    TextToSpeech mT2S = null;
     private final int ACT_CHECK_TTS_DATA = 1000;
 
     private EditText txtTextToSpeech;
@@ -43,19 +40,19 @@ public class Search extends AppCompatActivity{
         wvResultText = findViewById(R.id.search_result_txt);
         handleIntent(getIntent());
 
-        txtTextToSpeech = findViewById(R.id.tts_init);
+        txtTextToSpeech = findViewById(R.id.t2s_init);
 
-        Button btnTextToSpeech = findViewById(R.id.button3);
-/*        btnTextToSpeech.setOnClickListener(new View.OnClickListener() {
+        Button btnTextToSpeech = findViewById(R.id.btn_t2s);
+        btnTextToSpeech.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                saySomething(txtTextToSpeech.toString().trim(), 1);
+                readIntro(txtTextToSpeech.getText().toString(), 1);
             }
-        });*/
+        });
 
         // Check to see if we have TTS voice data
-        Intent ttsIntent = new Intent();
-        ttsIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
-        startActivityForResult(ttsIntent, ACT_CHECK_TTS_DATA);
+        Intent t2sIntent = new Intent();
+        t2sIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
+        startActivityForResult(t2sIntent, ACT_CHECK_TTS_DATA);
 
 /*        Button BtnCamera= findViewById(R.id.btn_camera);
         BtnCamera.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +124,6 @@ public class Search extends AppCompatActivity{
             }
         }).start();
     }
-
     private void simpleWikiSearch(String queryStr) {
         Toast.makeText(getApplicationContext(), queryStr, Toast.LENGTH_LONG).show();
         String wikiQueryStr = "https://en.m.wikipedia.org/wiki/The_Starry_Night";
@@ -137,11 +133,11 @@ public class Search extends AppCompatActivity{
         wvResultImage.loadUrl("http:" + "//upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/300px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg");
     }
 
-/*    private void saySomething(String text, int qmode) {
+    private void readIntro(String text, int qmode) {
         if (qmode == 1)
-            mTTS.speak(text, TextToSpeech.QUEUE_ADD, null);
+            mT2S.speak(text, TextToSpeech.QUEUE_ADD, null);
         else
-            mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+            mT2S.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
 
     @Override
@@ -149,7 +145,7 @@ public class Search extends AppCompatActivity{
         if (requestCode == ACT_CHECK_TTS_DATA) {
             if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
                 // Data exists, so we instantiate the TTS engine
-                mTTS = new TextToSpeech(this, this);
+                mT2S = new TextToSpeech(this, this);
             } else {
                 // Data is missing, so we start the TTS
                 // installation process
@@ -162,13 +158,13 @@ public class Search extends AppCompatActivity{
 
     public void onInit(int status) {
         if (status == TextToSpeech.SUCCESS) {
-            if (mTTS != null) {
-                int result = mTTS.setLanguage(Locale.US);
+            if (mT2S != null) {
+                int result = mT2S.setLanguage(Locale.US);
                 if (result == TextToSpeech.LANG_MISSING_DATA ||
                         result == TextToSpeech.LANG_NOT_SUPPORTED) {
                     Toast.makeText(this, "TTS language is not supported", Toast.LENGTH_LONG).show();
                 } else {
-                    saySomething("TTS is ready", 0);
+                    readIntro("", 0);
                 }
             }
         } else {
@@ -179,11 +175,11 @@ public class Search extends AppCompatActivity{
 
     @Override
     protected void onDestroy() {
-        if (mTTS != null) {
-            mTTS.stop();
-            mTTS.shutdown();
+        if (mT2S != null) {
+            mT2S.stop();
+            mT2S.shutdown();
         }
         super.onDestroy();
-    }*/
+    }
 
 }

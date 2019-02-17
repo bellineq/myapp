@@ -8,23 +8,23 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="85dp"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <EditText
-            android:id="@+id/tts_init"
+            android:id="@+id/t2s_init"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Init"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
         <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
+            android:id="@+id/btn_t2s"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:background="@android:drawable/stat_sys_headset" />
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
