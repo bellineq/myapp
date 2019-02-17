@@ -11,28 +11,27 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="87dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
-        android:text="@string/camara"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@android:drawable/ic_menu_camera"
         app:layout_constraintBottom_toBottomOf="@+id/btn_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_search"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
+
         android:id="@+id/btn_search"
         android:layout_width="87dp"
         android:layout_height="87dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/ic_search"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="12dp"
+        android:background="@android:drawable/ic_menu_search"
         android:onClick="searchFromMain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button"
-        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
