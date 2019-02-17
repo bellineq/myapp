@@ -8,4 +8,5 @@
     <string name="button_send">Send</string>
     <string name="search_hint">Search artwork, artist...</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_text_to_speech_demo">TextToSpeechDemo</string>
 </resources>
