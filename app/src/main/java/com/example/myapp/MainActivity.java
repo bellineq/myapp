@@ -47,11 +47,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        mTextMessage = (TextView) findViewById(R.id.message);
-//        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-//        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
         final int REQUEST_IMAGE_CAPTURE = 1;
 
         Button Camera= findViewById(R.id.button);
@@ -68,32 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    /** Called when the user taps the Send button */
-//    public void sendMessage(View view) {
-//        Intent intent = new Intent(this, DisplayMessageActivity.class);
-//        EditText editText = (EditText) findViewById(R.id.editText);
-//        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE, message);
-//        startActivity(intent);
-//    }
-
     /** Called when the user hit the Search button */
     public void searchFromMain(View view) {
-        if (onSearchRequested())
-            Log.i("TEST", "Search button hit");
+        onSearchRequested();
     }
-
-//    static final int REQUEST_IMAGE_CAPTURE = 1;
-//
-//    private ImageView mImageView;
-//
-//    private void dispatchTakePictureIntent() {
-//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-//            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-//        }
-//    }
-
 
 }
